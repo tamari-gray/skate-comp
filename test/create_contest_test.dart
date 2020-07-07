@@ -25,4 +25,16 @@ void main() {
     });
     contest.removeSkater("po");
   });
+
+  test(" reset contest deletes all players", () {
+    final contest = ContestState();
+    contest.addSkater("po");
+    contest.addSkater("pete");
+    final startingPlayerCount = contest.skaters.length;
+    expect(startingPlayerCount, equals(2));
+    contest.addListener(() {
+      expect(contest.skaters.length, equals(0));
+    });
+    contest.reset();
+  });
 }

@@ -9,6 +9,7 @@ class AddSkater extends StatefulWidget {
 
 class _AddSkaterState extends State<AddSkater> {
   final _controller = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -35,43 +36,82 @@ class _AddSkaterState extends State<AddSkater> {
         children: <Widget>[
           Center(
             child: Container(
-              child: TextField(
-                controller: _controller,
-                decoration: InputDecoration(hintText: "enter name"),
+              child: Form(
+                key: _formKey,
+                child: Column(children: <Widget>[
+                  // Add TextFormFields and RaisedButton here.
+                  TextFormField(
+                    controller: _controller,
+                    decoration: InputDecoration(hintText: "enter name"),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Please enter skaters name';
+                      }
+                      return null;
+                    },
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      RaisedButton(
+                        onPressed: () {
+                          if (_formKey.currentState.validate()) {
+                            // add skater to state
+                            Provider.of<ContestState>(context, listen: false)
+                                .addSkater(_controller.text);
+                            // redirect to home
+                            Navigator.pop(context);
+                          }
+                        },
+                        child: Text("Add"),
+                      ),
+                      FlatButton(
+                        onPressed: () {
+                          // clear text feild
+                          _controller.clear();
+                          // redirect to home
+                          Navigator.pop(context);
+                        },
+                        child: Text("Cancel"),
+                      )
+                    ],
+                  ),
+                ]),
               ),
               width: 350,
             ),
           ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 75, 0, 0),
-            child: Container(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  RaisedButton(
-                    onPressed: () {
-                      // add skater to state
-                      Provider.of<ContestState>(context, listen: false)
-                          .addSkater(_controller.text);
-                      // redirect to home
-                      Navigator.pop(context);
-                    },
-                    child: Text("Add"),
-                  ),
-                  FlatButton(
-                    onPressed: () {
-                      // clear text feild
-                      _controller.clear();
-                      // redirect to home
-                      Navigator.pop(context);
-                    },
-                    child: Text("Cancel"),
-                  )
-                ],
-              ),
-            ),
-          )
+          // Padding(
+          //   padding: EdgeInsets.fromLTRB(0, 75, 0, 0),
+          //   child: Container(
+          //     child: Row(
+          //       crossAxisAlignment: CrossAxisAlignment.center,
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: <Widget>[
+          //         RaisedButton(
+          //           onPressed: () {
+          //             // add skater to state
+          //             Provider.of<ContestState>(context, listen: false)
+          //                 .addSkater(_controller.text);
+          //             // redirect to home
+          //             Navigator.pop(context);
+          //           },
+          //           child: Text("Add"),
+          //         ),
+          //         FlatButton(
+          //           onPressed: () {
+          //             // clear text feild
+          //             _controller.clear();
+          //             // redirect to home
+          //             Navigator.pop(context);
+          //           },
+          //           child: Text("Cancel"),
+          //         )
+          //       ],
+          //     ),
+          //   ),
+          // )
         ],
       )),
     );

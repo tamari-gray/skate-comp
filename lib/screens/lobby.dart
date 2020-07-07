@@ -20,13 +20,24 @@ class _LobbyState extends State<Lobby> {
       appBar: AppBar(
         title: Text("Yeet league"),
         actions: <Widget>[
-          FlatButton(
-            child: Text("Ready"),
-            onPressed: () {
-              //route to leaderboard
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LeaderBoard()),
+          Consumer<ContestState>(
+            builder: (context, contest, child) {
+              return FlatButton(
+                child: Text("Ready"),
+                onPressed: () {
+                  //route to leaderboard
+                  if (contest.skaters.length > 0) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LeaderBoard()),
+                    );
+                  } else {
+                    final snackBar =
+                        SnackBar(content: Text('Add some peeps first'));
+
+                    Scaffold.of(context).showSnackBar(snackBar);
+                  }
+                },
               );
             },
           ),
@@ -37,9 +48,10 @@ class _LobbyState extends State<Lobby> {
           return contest.skaters.length == 0
               ? Center(
                   child: Text(
-                  'Who gon play today?',
-                  style: TextStyle(fontSize: 30),
-                ))
+                    'Who gon play today?',
+                    style: TextStyle(fontSize: 30),
+                  ),
+                )
               : ListView.builder(
                   padding: const EdgeInsets.all(8),
                   itemCount: contest.skaters.length,

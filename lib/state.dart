@@ -20,5 +20,10 @@ class ContestState extends ChangeNotifier {
     notifyListeners();
   }
 
-  // update skater score
+  // reset contest
+  void reset() {
+    _skaters.clear();
+    notifyListeners();
+  }
 }
+// update skater score
