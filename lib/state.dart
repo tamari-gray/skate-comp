@@ -45,13 +45,18 @@ class ContestState extends ChangeNotifier {
         _skaters.firstWhere((skater) => skater.name == skaterName);
 
     _skater.scores[currentAttemptName] = score;
-
     print(
-        "added score: ${_skater.name}: ${_skater.scores[currentAttemptName]}");
+        "added ${_skater.name} $currentAttemptName score: ${_skater.scores[currentAttemptName]}");
+
+    // check if everyone has completed this attempt then go to next attempt
+    final bool everySkaterHasCompletedAttempt =
+        _skaters.every((skater) => skater.scores[currentAttemptName] != null);
+    if (everySkaterHasCompletedAttempt) nextAttempt();
     notifyListeners();
   }
 
   Skater get currentSkater {
+    // get skater
     final _currentSkater = _skaters
         .firstWhere((skater) => skater.scores[currentAttemptName] == null);
     print("${_currentSkater.name}");

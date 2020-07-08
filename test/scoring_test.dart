@@ -31,4 +31,32 @@ void main() {
 
     expect(contest.currentSkater.name, equals("poster"));
   });
+
+  test('add scores to consecutive attempts', () {
+    //set up
+    final contest = ContestState();
+    contest.addSkater("pete");
+    contest.addSkater("po");
+    expect(contest.currentAttempt, equals(1));
+
+    // add pete 1st score
+    contest.addScore(9.0, contest.currentSkater.name);
+    expect(contest.currentAttempt, equals(1));
+
+    // add po first score
+    contest.addScore(6.5, contest.currentSkater.name);
+    expect(contest.currentAttempt, equals(2));
+
+    // add pete second score
+    contest.addScore(8.0, contest.currentSkater.name);
+    expect(contest.currentAttempt, equals(2));
+
+    // add po second score
+    contest.addScore(8.2, contest.currentSkater.name);
+    expect(contest.currentAttempt, equals(3));
+
+    // add pete third score
+    contest.addScore(9.9, contest.currentSkater.name);
+    expect(contest.currentAttempt, equals(3));
+  });
 }
