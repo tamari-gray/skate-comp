@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:provider/provider.dart';
-import 'package:skate_comp/state.dart';
+import 'package:yeetLeague/state.dart';
 
 class FinishedGame extends StatelessWidget {
   @override

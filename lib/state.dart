@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:skate_comp/models/skater.dart';
+import 'package:yeetLeague/models/skater.dart';
 
 class ContestState extends ChangeNotifier {
   final List<Skater> _skaters = [];

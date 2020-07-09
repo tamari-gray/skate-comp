@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:skate_comp/screens/add_score.dart';
-import 'package:skate_comp/state.dart';
+import 'package:yeetLeague/screens/add_score.dart';
+import 'package:yeetLeague/state.dart';
 
 class ViewScore extends StatefulWidget {
   @override

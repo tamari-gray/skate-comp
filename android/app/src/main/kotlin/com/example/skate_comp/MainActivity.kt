@@ -1,4 +1,4 @@
-package com.example.skate_comp
+package com.kawaiifreaks.yeetLeague
 
 import io.flutter.embedding.android.FlutterActivity
 

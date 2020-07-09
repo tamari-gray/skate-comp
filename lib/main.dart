@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:provider/provider.dart';
-import 'package:skate_comp/screens/lobby.dart';
-import 'package:skate_comp/state.dart';
+import 'package:yeetLeague/screens/lobby.dart';
+import 'package:yeetLeague/state.dart';
 
 void main() {
   runApp(Phoenix(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:skate_comp/state.dart';
+import 'package:yeetLeague/state.dart';
 
 class AddSkater extends StatefulWidget {
   @override

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:provider/provider.dart';
-import 'package:skate_comp/screens/finished_contest.dart';
-import 'package:skate_comp/screens/view_score.dart';
-import 'package:skate_comp/state.dart';
+import 'package:yeetLeague/screens/finished_contest.dart';
+import 'package:yeetLeague/screens/view_score.dart';
+import 'package:yeetLeague/state.dart';
 
 class LeaderBoard extends StatefulWidget {
   @override

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:skate_comp/models/skater.dart';
-import 'package:skate_comp/screens/leaderboard.dart';
-import 'package:skate_comp/state.dart';
+import 'package:yeetLeague/models/skater.dart';
+import 'package:yeetLeague/screens/leaderboard.dart';
+import 'package:yeetLeague/state.dart';
 
 class AddScore extends StatefulWidget {
   @override

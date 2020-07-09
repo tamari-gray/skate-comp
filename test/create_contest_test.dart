@@ -1,5 +1,5 @@
 // Import the test package and Counter class
-import 'package:skate_comp/state.dart';
+import 'package:yeetLeague/state.dart';
 import 'package:test/test.dart';
 
 void main() {
