@@ -10,9 +10,17 @@ class Skater {
     trick_5: null,
   };
 
-  double get totalScore => scores.values
-      .where((attempt) => attempt != null)
-      .reduce((value, element) => value + element);
+  double get totalScore {
+    bool noAttemptsYet = scores.values.every((element) => element == null);
+
+    if (noAttemptsYet) {
+      return 0.0;
+    } else {
+      return scores.values
+          .where((attempt) => attempt != null)
+          .reduce((value, element) => value + element);
+    }
+  }
 
   Skater({this.name});
 }

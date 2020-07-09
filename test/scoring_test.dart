@@ -56,7 +56,18 @@ void main() {
     expect(contest.currentAttempt, equals(3));
 
     // add pete third score
-    contest.addScore(9.9, contest.currentSkater.name);
+    contest.addScore(9.0, contest.currentSkater.name);
     expect(contest.currentAttempt, equals(3));
+  });
+
+  test('check if game finished', () {
+    final contest = ContestState();
+    contest.addSkater("pete");
+    contest.addSkater("po");
+    for (var i = 0; i < 14; i++) {
+      contest.addScore(9.0, contest.currentSkater.name);
+    }
+
+    expect(contest.finishedGame, true);
   });
 }

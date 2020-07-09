@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:skate_comp/models/skater.dart';
 
@@ -5,6 +7,7 @@ class ContestState extends ChangeNotifier {
   final List<Skater> _skaters = [];
   int currentAttempt = 1;
   String currentAttemptName = "run_1";
+  bool finishedGame = false;
 
   // scoring
   void nextAttempt() {
@@ -43,16 +46,34 @@ class ContestState extends ChangeNotifier {
   void addScore(double score, String skaterName) {
     final Skater _skater =
         _skaters.firstWhere((skater) => skater.name == skaterName);
+    print("current skater is: ${currentSkater.name}");
 
-    _skater.scores[currentAttemptName] = score;
+    _skater.scores.update(currentAttemptName, (value) => score);
     print(
         "added ${_skater.name} $currentAttemptName score: ${_skater.scores[currentAttemptName]}");
 
     // check if everyone has completed this attempt then go to next attempt
     final bool everySkaterHasCompletedAttempt =
         _skaters.every((skater) => skater.scores[currentAttemptName] != null);
+    print(" to nextr attempt $everySkaterHasCompletedAttempt");
     if (everySkaterHasCompletedAttempt) nextAttempt();
+
+    final isFinished = _skaters.every(
+        (skater) => skater.scores.values.every((score) => score != null));
+
+    print(" game is finished $isFinished");
+
+    if (isFinished) finishedGame = true;
     notifyListeners();
+  }
+
+  // void checkIfFinished() {
+  //   final isFinished _skaters.every(
+  //       (skater) => skater.scores.values.every((score) => score != null));
+  // }
+
+  void needsForFirst(Skater skater) {
+    _skaters.map((skater) => skater.totalScore).reduce((max));
   }
 
   Skater get currentSkater {
@@ -88,6 +109,9 @@ class ContestState extends ChangeNotifier {
   // reset contest
   void reset() {
     _skaters.clear();
+    finishedGame = false;
+    currentAttempt = 1;
+    currentAttemptName = "run_1";
     notifyListeners();
   }
 }

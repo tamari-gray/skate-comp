@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:provider/provider.dart';
 import 'package:skate_comp/screens/lobby.dart';
 import 'package:skate_comp/state.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Phoenix(
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +19,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Yeet league',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.green,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: Lobby(),
