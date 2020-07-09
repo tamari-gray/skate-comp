@@ -48,9 +48,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ContestState>(builder: (context, contest, child) {
-      // contest.currentSkater.scores.forEach((key, value) {
-      //   print("$key : $value");
-      // });
+      final _skaters = contest.leaderboard;
       return Scaffold(
         appBar: AppBar(
           title: Text("Yeet league"),
@@ -88,12 +86,13 @@ class _LeaderBoardState extends State<LeaderBoard> {
         ),
         body: ListView.builder(
           padding: const EdgeInsets.all(8),
-          itemCount: contest.skaters.length,
+          itemCount: _skaters.length,
           itemBuilder: (BuildContext context, int index) {
+            final _position = index + 1;
             return Card(
               child: ListTile(
-                title: Text('${contest.skaters[index].name}'),
-                trailing: Text('${contest.skaters[index].totalScore}'),
+                title: Text('$_position.  ${_skaters[index].name}'),
+                trailing: Text('${_skaters[index].totalScore}'),
               ),
             );
           },

@@ -11,14 +11,12 @@ class AddScore extends StatefulWidget {
 
 class _AddScoreState extends State<AddScore> {
   double _hypeScore;
-  double _funScore;
   double _flowScore;
 
   @override
   void initState() {
     super.initState();
     _hypeScore = 0;
-    _funScore = 0;
     _flowScore = 0;
   }
 
@@ -66,10 +64,10 @@ class _AddScoreState extends State<AddScore> {
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () async {
               // go to scoring route
-              final _totalScore = _hypeScore + _funScore + _flowScore;
-              final _avgScore = _totalScore / 3;
+              final _totalScore = _hypeScore + _flowScore;
+              final _avgScore = _totalScore / 2;
               final _roundedScore = _avgScore.toStringAsFixed(1);
-              final _finalScore = double.tryParse(_roundedScore);
+              final _finalScore = double.parse(_roundedScore);
 
               print("final score is $_finalScore");
 
@@ -83,44 +81,27 @@ class _AddScoreState extends State<AddScore> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "Hype",
-                      style: TextStyle(fontSize: 30),
-                    ),
-                    Slider(
-                      value: _hypeScore,
-                      onChanged: (newValue) {
-                        setState(() => _hypeScore = newValue);
-                      },
-                      min: 0,
-                      max: 10,
-                      divisions: 100,
-                      label: "$_hypeScore",
-                    )
-                  ]),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 50, 0, 50),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
                 child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "Fun",
+                        "Hype",
                         style: TextStyle(fontSize: 30),
                       ),
                       Slider(
-                        value: _funScore,
+                        value: _hypeScore,
                         onChanged: (newValue) {
-                          setState(() => _funScore = newValue);
+                          final roundedValue =
+                              double.parse(newValue.toStringAsExponential(1));
+                          setState(() => _hypeScore = roundedValue);
                         },
                         min: 0,
                         max: 10,
                         divisions: 100,
-                        label: "$_funScore",
+                        label: "$_hypeScore",
                       )
                     ]),
               ),

@@ -6,8 +6,18 @@ import 'package:skate_comp/models/skater.dart';
 class ContestState extends ChangeNotifier {
   final List<Skater> _skaters = [];
   int currentAttempt = 1;
-  String currentAttemptName = "run_1";
+  String currentAttemptName = "run 1";
   bool finishedGame = false;
+
+  // get skaters in order of scores
+  List<Skater> get leaderboard {
+    _skaters.sort((a, b) => b.totalScore.compareTo(a.totalScore));
+
+    if (_skaters.length == 3)
+      print(
+          "first: ${_skaters[0].name}, second: ${_skaters[1].name}, third: ${_skaters[2].name} ");
+    return _skaters;
+  }
 
   // scoring
   void nextAttempt() {
@@ -18,28 +28,28 @@ class ContestState extends ChangeNotifier {
   void setAttemptName() {
     switch (currentAttempt) {
       case 1:
-        currentAttemptName = "run_1";
+        currentAttemptName = "run 1";
         break;
       case 2:
-        currentAttemptName = "run_2";
+        currentAttemptName = "run 2";
         break;
       case 3:
-        currentAttemptName = "trick_1";
+        currentAttemptName = "trick 1";
         break;
       case 4:
-        currentAttemptName = "trick_2";
+        currentAttemptName = "trick 2";
         break;
       case 5:
-        currentAttemptName = "trick_3";
+        currentAttemptName = "trick 3";
         break;
       case 6:
-        currentAttemptName = "trick_4";
+        currentAttemptName = "trick 4";
         break;
       case 7:
-        currentAttemptName = "trick_5";
+        currentAttemptName = "trick 5";
         break;
       default:
-        currentAttemptName = "run_1";
+        currentAttemptName = "run 1";
     }
   }
 
@@ -67,11 +77,6 @@ class ContestState extends ChangeNotifier {
     notifyListeners();
   }
 
-  // void checkIfFinished() {
-  //   final isFinished _skaters.every(
-  //       (skater) => skater.scores.values.every((score) => score != null));
-  // }
-
   void needsForFirst(Skater skater) {
     _skaters.map((skater) => skater.totalScore).reduce((max));
   }
@@ -86,12 +91,6 @@ class ContestState extends ChangeNotifier {
 
   // get skaters
   List<Skater> get skaters => _skaters;
-
-  // get skaters in order of score
-  // void orderSkaters() {
-  //   _skaters.sort((a, b) => a.totalScore.compareTo(b.totalScore));
-  //   notifyListeners();
-  // }
 
   // add new skater
   void addSkater(String name) {
@@ -111,7 +110,7 @@ class ContestState extends ChangeNotifier {
     _skaters.clear();
     finishedGame = false;
     currentAttempt = 1;
-    currentAttemptName = "run_1";
+    currentAttemptName = "run 1";
     notifyListeners();
   }
 }

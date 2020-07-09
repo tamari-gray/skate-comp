@@ -25,10 +25,10 @@ class Skater {
   Skater({this.name});
 }
 
-final String run_1 = "run_1";
-final String run_2 = "run_2";
-final String trick_1 = "trick_1";
-final String trick_2 = "trick_2";
-final String trick_3 = "trick_3";
-final String trick_4 = "trick_4";
-final String trick_5 = "trick_5";
+final String run_1 = "run 1";
+final String run_2 = "run 2";
+final String trick_1 = "trick 1";
+final String trick_2 = "trick 2";
+final String trick_3 = "trick 3";
+final String trick_4 = "trick 4";
+final String trick_5 = "trick 5";

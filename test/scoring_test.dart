@@ -19,7 +19,7 @@ void main() {
     contest.addScore(9.2, _currentSkater.name);
     final skaterThatJustGotScored =
         contest.skaters.firstWhere((skater) => skater.name == "pete");
-    expect(skaterThatJustGotScored.scores["run_1"], equals(9.2));
+    expect(skaterThatJustGotScored.scores["run 1"], equals(9.2));
 
     final _nextSkater = contest.currentSkater;
     expect(_nextSkater.name, equals("po"));
@@ -27,7 +27,7 @@ void main() {
     contest.addScore(9.5, contest.currentSkater.name);
     final newSkaterThatJustGotScored =
         contest.skaters.firstWhere((skater) => skater.name == "po");
-    expect(newSkaterThatJustGotScored.scores["run_1"], equals(9.5));
+    expect(newSkaterThatJustGotScored.scores["run 1"], equals(9.5));
 
     expect(contest.currentSkater.name, equals("poster"));
   });
@@ -69,5 +69,25 @@ void main() {
     }
 
     expect(contest.finishedGame, true);
+  });
+  test('get skaters in order of scores', () {
+    final contest = ContestState();
+    contest.addSkater("pete");
+    contest.addSkater("po");
+    contest.addSkater("toto");
+    for (var i = 0; i < 21; i++) {
+      if (contest.currentSkater.name == "pete") {
+        contest.addScore(9.0, contest.currentSkater.name);
+      } else if (contest.currentSkater.name == "po") {
+        contest.addScore(5.0, contest.currentSkater.name);
+      } else if (contest.currentSkater.name == "toto") {
+        contest.addScore(9.5, contest.currentSkater.name);
+      }
+    }
+    expect(contest.finishedGame, true);
+
+    expect(contest.leaderboard[0].name, equals("toto"));
+    expect(contest.leaderboard[1].name, equals("pete"));
+    expect(contest.leaderboard[2].name, equals("po"));
   });
 }
