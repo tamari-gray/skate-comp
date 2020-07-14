@@ -70,6 +70,31 @@ void main() {
 
     expect(contest.finishedGame, true);
   });
+  test('total score is top 4 scores', () {
+    final contest = ContestState();
+    contest.addSkater("pete");
+
+    contest.addScore(9.0, contest.currentSkater.name);
+    expect(contest.currentSkater.totalScore, 9.0);
+
+    contest.addScore(6.0, contest.currentSkater.name);
+    expect(contest.currentSkater.totalScore, 15.0);
+
+    contest.addScore(0, contest.currentSkater.name);
+    expect(contest.currentSkater.totalScore, 15.0);
+
+    contest.addScore(9.5, contest.currentSkater.name);
+    expect(contest.currentSkater.totalScore, 24.5);
+
+    contest.addScore(9.4, contest.currentSkater.name);
+    expect(contest.currentSkater.totalScore, 33.9);
+
+    contest.addScore(9.1, contest.currentSkater.name);
+    expect(contest.currentSkater.totalScore, 37.0);
+
+    contest.addScore(9.9, contest.currentSkater.name);
+    expect(contest.skaters[0].totalScore, 37.9);
+  });
   test('get skaters in order of scores', () {
     final contest = ContestState();
     contest.addSkater("pete");

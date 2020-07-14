@@ -16,9 +16,27 @@ class Skater {
     if (noAttemptsYet) {
       return 0.0;
     } else {
-      return scores.values
-          .where((attempt) => attempt != null)
-          .reduce((value, element) => value + element);
+      int landedAttempts =
+          scores.values.where((attempt) => attempt != null).length;
+      if (landedAttempts > 4) {
+        landedAttempts = 4;
+      }
+
+      final List scoresInOrder =
+          scores.values.where((attempt) => attempt != null).toList();
+      scoresInOrder.sort((b, a) => a.compareTo(b));
+
+      double topScore = 0.0;
+
+      for (var i = 0; i < landedAttempts; i++) {
+        final score = scoresInOrder[i];
+        print("adding score = $score");
+
+        if (score != null) topScore = topScore + score;
+        print("new top score = $topScore");
+      }
+
+      return topScore;
     }
   }
 
